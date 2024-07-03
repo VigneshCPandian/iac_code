@@ -43,7 +43,6 @@ jobs:
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
-        continue-on-error: true 
 
       - name: Terraform Validate
         id: validate
@@ -52,10 +51,6 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color -input=false -out planfile
-
-      - name: Terraform Plan Status 
-        if: steps.plan.outcome == 'failure'
-        run: exit 1
 
   manual-approval:
     name: "Manual Approval"
